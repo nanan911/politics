@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::any('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/advanced-search', [HomeController::class, 'search']);
+    Route::get('/article', [ArticleController::class, 'index'])->name('article');
+});
+
+Auth::routes();
+
+
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::post('/advanced-search', [HomeController::class, 'search']);
+
+
+// Auth::routes();
+
+// Route::get('/article', [ArticleController::class, 'index'])->name('article');
+
+
