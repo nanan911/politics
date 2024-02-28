@@ -47,7 +47,6 @@
         },
         plotOptions: {
             series: {
-                // compare: 'percent',
                 showInNavigator: true
             }
         },
@@ -66,3 +65,5 @@
         series: seriesOptions
     });
 </script>
+
+

@@ -35,6 +35,21 @@
                     </div>
                 </div>
 
+                 <!-- 政黨 -->
+                 <div class="form-group">
+                    <label>政黨：</label>
+                    <div>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="selected_word_type[]" value="國民黨"> 國民黨
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="selected_word_type[]" value="民進黨"> 民進黨
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="selected_word_type[]" value="民眾黨"> 民眾黨
+                        </label>
+                    </div>
+                </div>
                 <!-- 時間 -->
                 <div class="form-group">
                     <label for="start_date">開始時間：</label>

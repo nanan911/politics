@@ -1,0 +1,54 @@
+version: '3'
+
+networks:
+  politics:
+
+services:
+  php:
+    build: .
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www/html
+    networks:
+      - politics
+    command: ["bash", ".docker/docker-entrypoint.sh"]
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php
+    networks:
+      - politics
+
+  db:
+    image: mysql:8.1
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: politics_db
+    networks:
+      - politics
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    ports:
+      - 8001:80
+    depends_on:
+      - db
+    networks:
+      - politics
+
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+    networks:
+      - politics
