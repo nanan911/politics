@@ -1,0 +1,407 @@
+
+<style>
+<style>
+    /* 共用的 CSS */
+    .container {
+        margin-top: 20px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+
+    th,
+    td {
+        text-align: left;
+    }
+
+    th {
+        background-color: gray;
+        color: gray;
+        font-weight: bold;
+    }
+
+    tr {
+        transition: background-color 0.3s;
+    }
+
+    tr:hover {
+        background-color: #ecf0f1;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal-content {
+    background-color: #444444;
+    border: 1px solid #888;
+    width: 60%;
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10% auto;
+    padding: 20px;
+}
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* 表格相關 CSS */
+    table {
+        font-family: Arial, sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th,
+    td {
+        padding: 3px;
+    }
+
+    th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    .table-container {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-top: 20px;
+    }
+
+    .table-container::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .table-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+        background-color: #444444;
+        border-radius: 5px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
+</style>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- 左側放置 Highcharts 網路圖 -->
+            <div class="col-md-7 left-container">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+            </div>
+
+            <!-- 右側放置表格 -->
+            <div class="col-md-5 ight-container">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>排行榜</th>
+                                <th>名稱</th>
+                                <th>文章篇數</th>
+                                <th>正面</th>
+                                <th>負面</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- JavaScript 會在這裡動態生成表格行 -->
+                        </tbody>
+                    </table>
+                    <div id="commentsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCommentsModal()">&times;</span>
+            <h2>文章回覆</h2>
+            <h4>[新聞] 質疑蕭美琴仍有美國籍　美國律師、前立委</h4>
+            <p id="userComment">點擊排行榜上的用戶以查看留言。</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for rankings (top 20)
+        const rankings = [
+            { id: 1, username: 'win8719', total_comments: 6901, likes: 764, dislikes: 1 },
+        { id: 2, username: 'rronbang', total_comments: 6351, likes: 1120, dislikes: 28 },
+        { id: 3, username: 'lolahjy', total_comments: 6342, likes: 224, dislikes: 5 },
+        { id: 4, username: 'jganet', total_comments: 6099, likes: 1611, dislikes: 0 },
+        { id: 5, username: 'remora', total_comments: 6005, likes: 1325, dislikes: 20 },
+        { id: 6, username: 'Homura', total_comments: 5817, likes: 2, dislikes: 2 },
+        { id: 7, username: 'crystal0100', total_comments: 5394, likes: 1481, dislikes: 11 },
+        { id: 8, username: 'a10141013', total_comments: 5215, likes: 1376, dislikes: 3 },
+        { id: 9, username: 'cycling', total_comments: 5082, likes: 1330, dislikes: 103 },
+        { id: 10, username: 'hydra3179', total_comments: 4923, likes: 1902, dislikes: 160 },
+        { id: 11, username: 'PunkGrass', total_comments: 4707, likes: 1316, dislikes: 205 },
+        { id: 12, username: 'cake10414', total_comments: 4530, likes: 1248, dislikes: 55 },
+        { id: 13, username: 'Ptalrasha', total_comments: 4410, likes: 2047, dislikes: 23 },
+        { id: 14, username: 'cake10414', total_comments: 3978, likes: 356, dislikes: 0 },
+        { id: 15, username: 'kaede0711', total_comments: 3951, likes: 765, dislikes: 1 },
+        { id: 16, username: 'malisse74', total_comments: 3788, likes: 1588, dislikes: 108 },
+        { id: 17, username: 'langeo', total_comments: 3690, likes: 1074, dislikes: 0 },
+        { id: 18, username: 'amare1015', total_comments: 3503, likes: 1096, dislikes: 1 },
+        { id: 19, username: 'piliwu', total_comments: 3369, likes: 1183, dislikes: 69 },
+        { id: 20, username: 's81048112', total_comments: 3354, likes: 809, dislikes: 8 }
+        ];
+    
+        // Sample data for comments
+        const comments = {
+            'win8719': [
+        '推: 他有美國政府公告可信嗎?',
+        '→: 還有八卦都說了snn不一定要美國移民才有',
+        '→: 還有八卦說了駐美期間~蕭一樣要報稅',
+        '→: 就這樣~先去把美國政府公告給他翻了吧',
+        '噓: 他喔林獻堂. 民進黨中評會決議開除邱彰黨籍',
+        '→: 簡稱 林文郎遞補不分區立委. 東森新聞報.',
+        '→: 2002-04-01.',
+        '→: 剛好蕭美琴當選的那年~所以蕭美琴啥狀況',
+        '→: 應該很清楚',
+        '→: 然後我不知道美國查人有沒有報稅好不好查',
+        '→: 但是台灣很難查個人',
+        '→: 他被開除黨籍的阿',
+        '→: 我比較懷疑他不看美國政府公告~用一些不',
+        '→: 能證明的萊懷疑~是來讓人上車的',
+        '→: 你們想搞出另一個彭文正~就上車吧'
+    ],
+            'User2': ['Comment 1 from User2', 'Comment 2 from User2', /* Add more comments for User2 */],
+            'User3': ['Comment 1 from User3', 'Comment 2 from User3', /* Add more comments for User3 */],
+            'User4': ['Comment 1 from User4', 'Comment 2 from User4', /* Add more comments for User4 */],
+            'User5': ['Comment 1 from User5', 'Comment 2 from User5', /* Add more comments for User5 */],
+            'User6': ['Comment 1 from User6', 'Comment 2 from User6', /* Add more comments for User6 */],
+            'User7': ['Comment 1 from User7', 'Comment 2 from User7', /* Add more comments for User7 */],
+            'User8': ['Comment 1 from User8', 'Comment 2 from User8', /* Add more comments for User8 */],
+            'User9': ['Comment 1 from User9', 'Comment 2 from User9', /* Add more comments for User9 */],
+            'User10': ['Comment 1 from User10', 'Comment 2 from User10', /* Add more comments for User10 */],
+            'User11': ['Comment 1 from User11', 'Comment 2 from User11', /* Add more comments for User11 */],
+            'User12': ['Comment 1 from User12', 'Comment 2 from User12', /* Add more comments for User12 */],
+            'User13': ['Comment 1 from User13', 'Comment 2 from User13', /* Add more comments for User13 */],
+            'User14': ['Comment 1 from User14', 'Comment 2 from User14', /* Add more comments for User14 */],
+            'User15': ['Comment 1 from User15', 'Comment 2 from User15', /* Add more comments for User15 */],
+            'User16': ['Comment 1 from User16', 'Comment 2 from User16', /* Add more comments for User16 */],
+            'User17': ['Comment 1 from User17', 'Comment 2 from User17', /* Add more comments for User17 */],
+            'User18': ['Comment 1 from User18', 'Comment 2 from User18', /* Add more comments for User18 */],
+            'User19': ['Comment 1 from User19', 'Comment 2 from User19', /* Add more comments for User19 */],
+            'User20': ['Comment 1 from User20', 'Comment 2 from User20', /* Add more comments for User20 */],
+        };
+
+        // Function to display table rows
+        function displayTable() {
+            const tableBody = document.getElementById('tableBody');
+    
+            rankings.forEach(user => {
+                const row = document.createElement('tr');
+            const rankCell = document.createElement('td');
+            const nameCell = document.createElement('td');
+            const totalCommentsCell = document.createElement('td');
+            const likesCell = document.createElement('td');
+            const dislikesCell = document.createElement('td');
+
+                rankCell.textContent = user.id;
+                    nameCell.textContent = user.username;
+            totalCommentsCell.textContent = user.total_comments;
+            likesCell.textContent = user.likes;
+            dislikesCell.textContent = user.dislikes;
+    
+            row.appendChild(rankCell);
+            row.appendChild(nameCell);
+            row.appendChild(totalCommentsCell);
+            row.appendChild(likesCell);
+            row.appendChild(dislikesCell);
+    
+                // Add a click event listener to each row to display the comments modal
+                row.addEventListener('click', () => displayUserComments(user.username));
+    
+                tableBody.appendChild(row);
+            });
+        }
+    
+        // Function to display user comments
+        function displayUserComments(username) {
+            const commentsModal = document.getElementById('commentsModal');
+            const userCommentElement = document.getElementById('userComment');
+            const userComments = comments[username] || ['No comments available'];
+    
+            // Generate HTML for all user comments
+            const commentsHTML = userComments.map(comment => `<p>${comment}</p>`).join('');
+    
+            // Set the comments in the modal
+            userCommentElement.innerHTML = `留言 from ${username}: ${commentsHTML}`;
+    
+            // Display the modal
+            commentsModal.style.display = 'block';
+        }
+    
+        // Function to close the comments modal
+        function closeCommentsModal() {
+            const commentsModal = document.getElementById('commentsModal');
+            commentsModal.style.display = 'none';
+        }
+    
+        // Call the displayTable function to initialize the table display
+        displayTable();
+    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Highcharts scripts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- Include your custom styles for Highcharts -->
+    <style>
+      /* Styles for the Highcharts data table */
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* 將最大寬度設置為 500px */
+}
+
+.highcharts-data-table caption {
+    font-size: 1em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+    </style>
+    <script>
+    Highcharts.addEvent(
+        Highcharts.Series,
+        'afterSetOptions',
+        function (e) {
+            const colors = Highcharts.getOptions().colors,
+                nodes = {};
+            let i = 0;
+
+            if (
+                this instanceof Highcharts.Series.types.networkgraph &&
+                e.options.id === 'lang-tree'
+            ) {
+                e.options.data.forEach(function (link) {
+                    if (link[0] === 'win8719') {
+                        nodes['win8719'] = {
+                            id: 'win8719',
+                            marker: {
+                                radius: 30
+                            }
+                        };
+                        nodes[link[1]] = {
+                            id: link[1],
+                            marker: {
+                                radius: 20
+                            },
+                            color: colors[i++]
+                        };
+                    } else if (nodes[link[0]] && nodes[link[0]].color) {
+                        nodes[link[1]] = {
+                            id: link[1],
+                            color: nodes[link[0]].color
+                        };
+                    }
+                });
+
+                e.options.nodes = Object.keys(nodes).map(function (id) {
+                    return nodes[id];
+                });
+            }
+        }
+    );
+
+    Highcharts.chart('container', {
+        chart: {
+            backgroundColor: 'rgba(63, 63, 63, 0)', 
+            type: 'networkgraph',
+        },
+        title: {
+            text: '意見領袖社群網路分析圖',
+            align: 'center',
+            style: {
+                color: '#ffffff',
+            }
+        },
+        subtitle: {
+            text: '',
+            align: 'left'
+        },
+        plotOptions: {
+            networkgraph: {
+                keys: ['from', 'to'],
+                layoutAlgorithm: {
+                    enableSimulation: true,
+                    friction: -0.9
+                }
+            }
+        },
+        series: [{
+            accessibility: {
+                enabled: false
+            },
+            dataLabels: {
+                enabled: true,
+                linkFormat: '',
+                style: {
+                    fontSize: '0.9em',
+                    fontWeight: 'normal',
+                    textOutline: 'none' // 移除陰影
+                }
+            },
+            id: 'lang-tree',
+            data: [
+                ['win8719', 'rronbang'],
+            ]
+        }]
+    });
+</script>
+
+
+

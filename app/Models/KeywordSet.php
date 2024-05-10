@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|KeywordSet whereSet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|KeywordSet whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|KeywordSet whereWord($value)
+ * @property string|null $word_type
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Article> $articles
+ * @property-read int|null $articles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|KeywordSet whereWordType($value)
  * @mixin \Eloquent
  */
 class KeywordSet extends Model

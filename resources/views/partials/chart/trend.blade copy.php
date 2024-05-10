@@ -21,10 +21,9 @@
             selected: 4
         },
         chart: {
-                backgroundColor: 'rgba(63, 63, 63, 0)',
-                borderRadius: 5, // 设置边框圆角
-            }, 
-            
+                backgroundColor: '#3f3f3f',
+                height: 263
+            },
             title: {
                 text: '熱門趨勢圖' ,                
                 style: {
@@ -38,21 +37,29 @@
                         color: '#9fa3a0'
                     }
             },
-            legend: {
-                enabled: true,
-                itemStyle: {
-                color: '#ffffff', // 更改图例文本颜色
-            } 
+            yAxis: {
+                title: {
+                    text: '',
+                    style: {
+                        color: '#fff'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#ffffff'
+                    }
+                },
+                tickInterval: 50000
             },
-           
+            legend: {
+                enabled: false 
+            },
         xAxis: {
             type: 'datetime',
             labels: {
                 style: {
                     fontSize: '16px',
-                    
                 }
-                
             },
             dateTimeLabelFormats: {
                 day: '%Y-%m-%d',
@@ -60,60 +67,25 @@
                 month: '%Y-%m',
                 year: '%Y'
             },
-            labels: {
-                    style: {
-                        color: '#ffffff'
-                    }
-                }
-        },
-        yAxis: [{
-        title: {
-            text: '文章数量',
-            style: {
-                color: '#ffffff'
+            title: {
+              
             }
         },
-        labels: {
-            style: {
-                color: '#ffffff'
-            }
+        yAxis: {
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'silver'
+            }]
         },
-        gridLineColor: '#dddddd', // 更改网格线颜色
-        gridLineWidth: 0.8, // 更改网格线宽度
-    }],
-        navigator: {
-        enabled: false // 禁用导航器
-    },
         plotOptions: {
             series: {
-                
-                // 设置线条宽度
-                marker: {
-                    enabled: true, // 启用数据点标记
-                    radius: 3, // 设置数据点标记半径
-                    symbol: 'circle', // 设置数据点标记形状
-                },
+                showInNavigator: true
             }
         },
-        exporting: {
-                enabled: false  
-            },
+        
         series: seriesOptions
     });
 </script>
 
-<style>
-    /* 添加图表样式 */
-    .chart-container {
-        height: 500px; /* 设置图表容器高度 */
-        max-width: 1000px; /* 设置图表容器最大宽度 */
-        margin: auto; /* 设置图表容器水平居中 */
-    }
-    .chart-title {
-        color: #333333; /* 设置标题颜色 */
-        text-align: center; /* 设置标题居中 */
-        font-size: 24px; /* 设置标题字体大小 */
-        margin-bottom: 20px; /* 设置标题下边距 */
-    }
-</style>
 

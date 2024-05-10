@@ -13,38 +13,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/home_page.css') }}"> 
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    <style>
-        body {
-            background-color: rgb(5, 1, 62);
-            color: white; /* 文字改為白色 */
-        }
-
-        .navbar-light .navbar-brand,
-        .navbar-light .navbar-nav .nav-link {
-            color: white; /* 導覽列文字也改為白色 */
-        }
-
-        .container{
-             /* margin: 10; 
-    padding: 0;  */
-
-
-}
-    </style>
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm"> <!-- 導覽列背景改為暗色 -->
-            <!-- <div class="container"> -->
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -73,7 +53,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown menuList">
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

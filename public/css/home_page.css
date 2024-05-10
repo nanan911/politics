@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+html,body{
+    background:  #FFFFFF;;
+}
+
+nav{
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #262626;
+    position: relative;
+    height: 70px;
+}
+
+.logo{
+    color: #fff;
+}
+
+nav ul{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+nav ul li{
+    list-style-type: none;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-icon{
+    display: none;
+}
+
+.menu-icon i{
+    color: #fff;
+    font-size: 30px;
+}
+
+@media (max-width:600px) {
+    nav ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        text-align: center;
+        background: #2a72a9;
+        gap: 0;
+        overflow: hidden;
+    }
+    nav ul li{
+        padding: 20px;
+        padding-top: 0;
+    }
+    .menu-icon{
+        display: block;
+    }
+    #menuList{
+        transition: all 0.5s;
+    }
+}
+body{
+    background-color: rgb(5, 1, 62);
+}
+.container_main{
+    display: grid;
+    grid-template-rows: 150px 150px 150px 150px 150px 150px 150px 150px 150px 150px;
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;
+    color: white;
+}
+
+.item-1{
+    grid-row-start: 1;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 30px 20px 20px 20px;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px; 
+}
+/* 趨勢 */
+.item-2{
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 7;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px; 
+}
+/* 台灣 */
+.item-3{
+    font-family: "微軟正黑體", sans-serif;
+    text-align: center;
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 7;
+    grid-column-end: 9;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px; 
+    padding: 10px;
+    font-weight: bold;
+}
+/* 定位 */
+.item-4{
+    position: relative;
+    grid-row-start: 4;
+    grid-row-end: 7;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px;
+}
+/* 詞彙 */
+.item-5{
+    grid-row-start: 4;
+    grid-row-end: 7;
+    grid-column-start: 4;
+    grid-column-end: 6;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px;
+}
+/* 網路圖 */
+.item-6{
+    grid-row-start: 7;
+    grid-row-end: 10;
+    grid-column-start: 2;
+    grid-column-end: 9;
+    padding: 10px 10px 10px 10px;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-bottom: none;
+    border-radius:20px 20px 20px 20px; 
+
+}
+/* 聲量圖 */
+.item-7{
+    grid-row-start: 4;
+    grid-row-end: 7;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);;
+    border-radius:20px 20px 20px 20px;
+}
+.item-8{
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    grid-column-start: 2;
+    grid-column-end: 12;
+    background-color: rgb(111, 97, 97);
+    border: 10px solid rgb(5, 1, 62);
+    border-radius:20px 20px 20px 20px; 
+}
+.item-9{
+    grid-row-start: 9;
+    grid-row-end: 11;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    background-color: rgba(63, 63, 63, 0.555);
+    border: 10px solid rgb(5, 1, 62);
+    border-radius:20px 20px 20px 20px;
+}
+.item-3 iframe {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    right: 10px;
+    bottom: 20px;
+}
+.item-2 iframe {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+.item-4 iframe {
+    position: absolute;
+    right: 5px;
+}

@@ -11,24 +11,17 @@
 }
 
 </style>
-
-<div class="sidebar_right">
-    <div class="checkbox">
-        <div id="check">
-            <form method="post" role='form' action="{{ route('home') }}" id="filterForm">
-                @csrf <!-- CSRF token -->
-
-                <!-- 條件篩選內容 -->
-                <div class="link">
-                 
-                    <h3>條件篩選</h3>
-                    <p></p>
-                </div>
-
+<div class="link">
+                   
+                   <h3>條件篩選</h3>
+                   <p></p>
+               </div>
+            <form method="get" role='form' action="{{ route('article') }}" id="filterForm">
                 <!-- 選擇板塊 -->
                 <div class="form-group">
                     <label for="selected_industry">選擇板塊：</label>
                     <select class="form-control" id="selected_industry" name="selected_industry">
+                        <!-- 选项内容，根据实际情况修改 -->
                         <option value="政治">政治</option>
                     </select>
                 </div>
@@ -129,12 +122,8 @@
                     </div>
                 </div>
 
-                <!-- 新增默认搜索标志 -->
-                <input type="hidden" name="default_search" value="1">
-
-
-                <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                <button type="submit" class="btn btn-primary">送出</button>
             </form>
         </div>
-    </div>
-</div>
+        </div>
+

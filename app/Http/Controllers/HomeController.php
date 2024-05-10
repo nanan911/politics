@@ -26,10 +26,16 @@ class HomeController extends Controller
         $endDate = $request->input('end_date');
         $selectedClass = $request->input('selected_class');
         $selectedSentiments = $request->input('selected_sentiment');
-
+        
         $trendData = $this->analyticsService->getTrendData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
-        $barData = $this->analyticsService->getBarData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
-
-        return view('home')->with('trend_data', $trendData)->with('bar_data', $barData);
+        $columnData = $this->analyticsService->getColumnData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
+        $bubbleData = $this->analyticsService->getBubbleData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
+        $packedbubbleData = $this->analyticsService->getPackedBubbleData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
+        // $networkData = $this->analyticsService->getNetworkData($selectedindustry, $selectedword, $startDate, $endDate, $selectedClass, $selectedSentiments);
+        
+        // dd($networkData);
+        return view('home')->with('trend_data', $trendData)->with('column_data', $columnData)->with('bubble_data', $bubbleData)->with('packedbubble_data', $packedbubbleData);
+        // ->with('network_data', $networkData)
+        
     }
 }

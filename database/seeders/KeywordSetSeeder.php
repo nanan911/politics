@@ -1,10 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\KeywordSet;
 use Illuminate\Database\Seeder;
-
 class KeywordSetSeeder extends Seeder
 {
     /**
@@ -23,8 +21,21 @@ class KeywordSetSeeder extends Seeder
             ],
             [
                 'word' => '柯文哲',
-                'set' => ['新竹', '台灣民眾黨', '高虹安', '白營', '黃珊珊', '柯陣營', '柯P', '助理費', '白', '柯陣營', '柯美蘭', '黃國昌', '吳欣盈'],
+                'set' => ['台灣民眾黨', '新竹', '高虹安', '白營', '黃珊珊', '柯陣營', '柯P', '助理費', '白', '柯陣營', '柯美蘭', '黃國昌', '吳欣盈'],
+            ],
+            [
+                'word' => '國民黨',
+                'set' => ['國民黨','侯友宜'],
+            ],
+            [
+                'word' => '民進黨',
+                'set' => ['民進黨','賴清德'],
+            ],
+            [
+                'word' => '民眾黨',
+                'set' => ['民眾黨','柯文哲'],
             ]
+            
         ]);
     }
 }

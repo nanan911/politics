@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereSourceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\KeywordSet> $keywordSets
+ * @property-read int|null $keyword_sets_count
  * @mixin \Eloquent
  */
 class Article extends Model
@@ -46,4 +48,9 @@ class Article extends Model
     {
         return $this->belongsToMany(KeywordSet::class, 'article_keywords', 'article_id', 'keyword_set_id');
     }
+    public function sentiment()
+{
+    return $this->hasOne(Sentiment::class, 'article_id');
+}
+
 }

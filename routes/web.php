@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::any('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/advanced-search', [HomeController::class, 'search']);
     Route::get('/article', [ArticleController::class, 'index'])->name('article');
+    Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
+
 });
 
 Auth::routes();
