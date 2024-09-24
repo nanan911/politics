@@ -1,0 +1,59 @@
+.article-detail {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .article-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .article-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .article-content {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .comments-title {
+    margin-top: 30px;
+    font-size: 1.5rem;
+  }
+  
+  .comments-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .comment-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .no-comments {
+    color: #888;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  

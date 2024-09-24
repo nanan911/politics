@@ -1,0 +1,100 @@
+body {
+    background-color: #e6e6e6;
+}
+
+.browse {
+    width: 95%;
+    margin: 2.4%;
+}
+  
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; 
+    border: 3px solid #e6e6e6;
+    border-radius: 8px;
+}
+
+.table th, .table td {
+    padding: 25px; 
+    text-align: center;
+}
+
+table th:first-child, .table td:first-child {
+    width: 120px;
+}
+
+.table th:nth-child(2), .table td:nth-child(2) {
+    width: 400px; 
+  }
+
+.table th {
+    background-color: #ffffff; 
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.table th:first-child, .table td:first-child {
+    border-radius: 8px 0 0 8px; 
+}
+
+.table th:last-child, .table td:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+.analyze{
+    background-color: #ffffff;
+    width: 800px;
+    height: 300px;
+    border-radius: 15px 15px 15px 15px;
+    display: flex;
+    margin-top: 10%;
+    margin-left: 28%;
+}
+
+.e1{
+    width: 50%;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    
+}
+
+.e2{
+    width: 25%;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+}
+
+.e3{
+    width: 25%;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+}
+
+.e1 {
+    text-align: center; 
+}
+
+.image-container {
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+}
+
+.image-item {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.person-image {
+    width: 80px;
+    border-radius: 50%;
+}
+
+.image-label {
+    margin-top: 10px;
+    font-size: 14px; 
+}

@@ -1,0 +1,113 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e6e6e6;
+}
+
+.nb {
+  width: 100%;
+  box-sizing: border-box; /* 确保 padding 和 border 不会影响宽度 */
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0.2%;
+  background-color: #f8f9fa;
+  color: rgb(255, 255, 255);
+  background: rgb(0,125,165);
+  width: 100%;
+}
+
+.search, .logo, .menu {
+  flex: 1; 
+  padding: 0 30px;
+}
+
+.search{
+  text-align: left;
+}
+
+.logo{
+  text-align: center;
+}
+
+.title{
+  font-family: sans-serif;
+  font-weight:bold;
+  margin: 0; 
+  font-size: 15px;
+}
+
+.menu{
+  text-align: right;
+}
+
+.menu .item {
+  text-decoration: none;
+  font-weight:bold;
+  color: rgb(206, 206, 206); 
+  font-size: 18px;
+  margin-right: 35px;
+}
+
+.row2{
+  display: flex;
+}
+
+.row3{
+  display: flex;
+}
+
+.row4{
+  display: flex;
+  border-left: 30px solid #e6e6e6;
+  border-top: 0px solid #e6e6e6;
+  border-right: 30px solid #e6e6e6;
+  border-bottom: 30px solid #e6e6e6;
+}
+
+.TrendChart{
+  width: 100%;
+  border: 30px solid #e6e6e6;
+}
+
+.BubbleChart{
+  width: 50%;
+  border-left: 30px solid #e6e6e6;
+  border-top: 0px solid #e6e6e6;
+  border-right: 15px solid #e6e6e6;
+  border-bottom: 30px solid #e6e6e6;
+  
+}
+
+.ColumnChart{
+  width: 50%;
+  border-left: 15px solid #e6e6e6;
+  border-top: 0px solid #e6e6e6;
+  border-right: 30px solid #e6e6e6;
+  border-bottom: 30px solid #e6e6e6;
+}
+
+.BarChart{
+  width: 50%;
+  height: 10%;
+  border-left: 30px solid #e6e6e6;
+  border-top: 0px solid #e6e6e6;
+  border-right: 15px solid #e6e6e6;
+  border-bottom: 30px solid #e6e6e6; 
+}
+
+.PackedBubbleChart{
+  width: 50%;
+  border-left: 15px solid #e6e6e6;
+  border-top: 0px solid #e6e6e6;
+  border-right: 30px solid #e6e6e6;
+  border-bottom: 30px solid #e6e6e6;
+}
+
+.NetworkChart{
+  width: 130%;
+}
